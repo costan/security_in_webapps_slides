@@ -17,7 +17,7 @@ h1. SQL Injection
     $rs = $db->executeQuery($sql);
 :endinlinecode
 
-The code above leads to death.
+The code above leads to pwnage.
 
 * SQL Injection 1: @'@ and @"@ escape out of the string
 * SQL Injection 2: @;@ separates instructions, @--@ comments out the rest of the line

@@ -38,7 +38,8 @@ h1. Plaintext Passwords III
 
 * Mistyped password available in HTML source
 
-* Fix: _never_ echo a user's password - HTML, e-mail, SMS
+* Fix: _never_ echo a user's password
+* Never means _never_: HTML, e-mail, SMS
 
 h1. Plaintext Passwords IV
 
