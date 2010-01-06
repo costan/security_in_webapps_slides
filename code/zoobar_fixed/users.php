@@ -6,10 +6,12 @@
 ?>
  <form name="profileform" method="GET"
   action="<?php echo $_SERVER['PHP_SELF']?>">
+<!--  START:csrf_fix -->
  <nobr>User:
  <input type="text" name="user" value="<?php 
    echo htmlentities($_GET['user']); 
  ?>" size=10></nobr><br>
+<!--  END:csrf_fix -->
  <input type="submit" value="View">
 </form>
 <div id="profileheader"><!-- user data appears here --></div>
@@ -43,7 +45,9 @@
   $zoobars = ($zoobars > 0) ? $zoobars : 0;
   echo "<span id='zoobars' class='$zoobars'/>";	
 ?><script type="text/javascript">
+  /* START:profile_parse */
   var total = parseInt(document.getElementById('zoobars').className);
+  /* END:profile_parse */
   function showZoobars(zoobars) {
     document.getElementById("profileheader").innerHTML =
       "<?php echo htmlentities($selecteduser, ENT_QUOTES) ?>'s zoobars:"

@@ -21,6 +21,7 @@
   if ( $rs->next() ) { // Sanitize and display profile
     list($profile, $username, $zoobars) = $rs->getCurrentValues();
     echo "<div class=profilecontainer><b>Profile</b>";
+# START:profile_escape
     $allowed_tags = 
       '<a><br><b><h1><h2><h3><h4><i><img><li><ol><p><strong><table>' .
       '<tr><td><th><u><ul><em><span>';
@@ -34,13 +35,16 @@
       'onSelect|onSubmit|onUnload';
     $profile = preg_replace("/$disallowed/i", " ", $profile);
     echo "<p id=profile>$profile</p></div>";
+# END:profile_escape
   } else if($selecteduser) {  // user parameter present but user not found
     echo '<p class="warning" id="baduser">Cannot find that user.</p>';
   }
   $zoobars = ($zoobars > 0) ? $zoobars : 0;
   echo "<span id='zoobars' class='$zoobars'/>";	
 ?><script type="text/javascript">
+  /* START:profile_fail */
   var total = eval(document.getElementById('zoobars').className);
+  /* END:profile_fail */
   function showZoobars(zoobars) {
     document.getElementById("profileheader").innerHTML =
       "<?php echo $selecteduser ?>'s zoobars:" + zoobars;

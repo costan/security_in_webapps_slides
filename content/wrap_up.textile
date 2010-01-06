@@ -11,5 +11,5 @@ Victor Costan
 
 This Presentation
 
-* Source code: http://github.com/costan/html_css_js_slides/
+* Source code: http://github.com/costan/security_in_web_apps_slides/
 * Pull requests (patches) are welcome!

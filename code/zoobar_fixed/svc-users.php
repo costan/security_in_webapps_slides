@@ -13,8 +13,10 @@
   
   if ($verb == "create") {
   	# New user.
+# START:sql_escaping  	
     $sql = "SELECT Username FROM Users WHERE Username='" .
            addslashes($username) . "'";
+# END:sql_escaping
     $rs = $db->executeQuery($sql);
     if( $rs->next() ) {
     	echo "\n";  // User already exists

@@ -1,6 +1,6 @@
 h1. Application Vulnerabilities
 
-* Can be detected by examining your application's implementation in isolation.
+Application vulnerabilities can be detected by examining your application's code, without any regard to the other pieces of software that it interacts with.
 
 h1. Plaintext Passwords I
 
@@ -137,7 +137,7 @@ Use signed cookies.
 set_cookie($cookie_name, md5($secret . $value) . $value, time() + 31104000);
 :endinlinecode
 
-* Scales better: don't need to hit the database to check cookies.
+* Scales better: no need to hit the database to check cookies.
 * Harder to secure: everyone depends on one secret.
 * Include an expiration date in the signature.
 * Rails, Django implement signed cookies by default.

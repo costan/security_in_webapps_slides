@@ -1,6 +1,8 @@
 h1. Integration Vulnerabilities
 
-* Web applications use a big soup of technology
+Integration vulnerabilities are not obvious from the application's logic. They happen when complex systems interact in unexpected ways.
+
+* Web applications use a big soup of technologies
 * Each integration point is a source of vulnerabilities
 
 Solution
@@ -9,25 +11,211 @@ Solution
 
 h1. SQL Injection
 
+:inlinecode[lang=php]
+    $username = $_POST['login_username'];
+    $sql = "SELECT * FROM Person WHERE (Username = '$username') ";
+    $rs = $db->executeQuery($sql);
+:endinlinecode
+
+The code above leads to death.
+
+* SQL Injection 1: @'@ and @"@ escape out of the string
+* SQL Injection 2: @;@ separates instructions, @--@ comments out the rest of the line
+* SQL Injection 3: @OR 1=1@ kills @WHERE@ clauses, @DROP ALL TABLES@  kills your database
+
+h1. SQL Injection Fixes
+
+* Escape every input that came in touch with the user. When in doubt, escape.
+* Escaping: enclose strings in single quotes @'@, call @addslashes@
+* Higher-level APIs (e.g. ORMs) escape automatically. Use them whenever possible.
+
+:code code/zoobar_fixed/svc-users.php[sql_escaping lang=php]
+
 h1. SQL Injection: Featured on XKCD
 
-!{width: 100%}images/xkcd_327.png}!
+!{width: 100%}images/xkcd_327.png!
 
-* Featured in Web comics, therefore very embarrassing
+* Very embarrassing: did you get pwned by someone who read xkcd?!
 
-h1. Exposed Source Code I: Password Database
+h1. Source Code Leak
 
+* On @scripts.mit.edu@ make sure your AFS permissions are set correctly. Ask a friend to try to @cd@ into your locker.
 
+| Serverity | Problem                                   | Workaround                                      |
+| low       | database credentials in source            | use firewall to prevent external connections    |
+| medium    | other credentials (e.g. Facebook API key) | ask partners to restrict API access to your IPs |
+| high      | your source code is embarrassing          | fix the damn file permissions                   |
+
+h1. Web Security: Model Overview
+
+Problem
+
+* HTTP is stateless: each request is independent.
+* State is simulated via a cookie jar.
+
+Threat Model
+
+# User visits site B (e.g. Twitter) and logs in
+# User visits site A (e.g. Facebook)
+# Site A renders code that accesses data from site B
+
+h1. Web Security: Same-Origin Policy
+
+Firewalls sites, so site A cannot interfere with site B
+
+* Site A does not receive cookies from site B
+* JavaScript from A cannot read site B's cookie jar
+* JavaScript from A cannot access the DOM of pages from site B
+* JavaScript from A cannot send an @XmlHttpRequest@ to B
+
+h1. Web Security: the Mashup Hole
+
+DOM elements can access data from any URL.
+
+| Tool       | Motivation                                           | Attack                                                |
+| @<img>@    | CDNs (Content Distribution Networks)                 | Issue arbitrary GET requests.                         |
+| @<script>@ | CDNs, Mash-ups (e.g. have a Google Map on your page) | Mash-up provider can add malicious code to your page. |
+| JSONP      | Get data from another source.                        | Get data without user's consent.                      |
 
 h1. CSRF: Cross-Site Request Forgery
 
+# Assume the victim is logged into target site. Assumption usually holds for Facebook, Twitter, Gmail, etc.
+# Convince victim to visit page with your code.
+# Issue HTTP requests to target site. The requests use the victim's cookie jar.
+
+* Myth: people don't visit arbitrary URLs; Twitter + @bit.ly@ URLs
+* Myth: CSRF attacks are hard to mount
+* Myth: only @GET@ requests are vulnerable to CSRF
+
+h1. CSRF Howto 1/4: Study the Target
+
+* Most Web applications have a freemium model; attacker can get an account on the system for free.
+
+:code code/zoobar/transfer.php[transfer_form lang=html]
+
+h1. CSRF Howto 2/4: Extract the Request
+
+* Easy: use Firebug's DOM inspector
+* Trivial: use Firebug's Net panel
+
+| Form action  | @/transfer.php@ |
+| Form method  | @POST@          |
+| @zoobars@    | number          |
+| @recipient@  | user name       |
+| @submission@ | @Send@          |
+
+h1. CSRF Howto 3/4: Set Up a Form
+
+:code code/zoobar_attacks/csrf.html[lang=html]
+
+h1. CSRF Howto 4/4: Auto-Submit the Form
+
+:code code/zoobar_attacks/csrf.js[lang=js]
+
+Bonus: Stealth Attack
+
+# Submit the form result to an @<iframe>@
+# Redirect to safe page after the form is submitted
+
+h1. CSRF Fix
+
+* Add a _hard to guess_ token to each non-@GET@ request (with side-effects).
+
+:code code/zoobar_fixed/includes/csrf.php[csrf_methods lang=php]
+
+h1. CSRF Fix
+
+* Simple implementation: random token stored in cookie.
+* The secret is an extra defense in case the random generator is defeated.
+
+:code code/zoobar_fixed/includes/csrf.php[csrf_init lang=php]
+
 h1. XSS: Cross-Site Scripting
 
-h1. XSS by JSONP
+# Make the target site render your JavaScript from their server.
+# Same-Origin Policy does not apply anymore.
 
-h1. XSS by @eval@
+h1. XSS Howto 1/3: Find Vulnerability
 
-h1. Plug-ins
+* Test forms with @"@, HTML tags, @javascript:@ links, etc.
+* Automated tools (fuzzers) exist.
+
+:code code/zoobar/users.php[csrf_fail lang=php]
+
+h1. XSS Howto 2/3: Inject an alert()
+
+* @alert()@ proves that you can run JavaScript, has very few moving parts.
+* Once you have the @alert()@, you can use standard payloads and tools to finish the attack.
+
+:code code/zoobar_attacks/xss_alert.url
+
+h1. XSS Howto 3/3: Full Attack
+
+* Generate DOM elements to submit cookies to your site.
+* Hide any validation errors that can point to your attack.
+
+:code code/zoobar_attacks/xss_full.rb[exploit lang=ruby]
+
+:code code/zoobar_attacks/xss_full.url
+
+h1. XSS Defenses
+
+Serve user content from another domain
+
+* Very cheap for its effectiveness
+* Domain name: $10, HTTP setup time: less than a day
+
+Escape strings originating from the user
+
+* If in doubt, escape. Rails 3 and Django default to escaping strings in views.
+* Do _not_ store escaped user input in the database. Prevents changing the output format.
+
+h1. XSS Defenses: Escaping
+
+* Reject @javascript:@ URLs (check against @/^https?\:/@)
+* Prefer @htmlentities()@ to @htmlspecialchars()@
+* Think about the difference between @ENT_COMPAT@ and @ENT_QUOTES@
+
+:code code/zoobar_fixed/users.php[csrf_fix lang=php]
+
+h1. Leaking Data via AJAX
+
+* Requests whose response fits nicely in a @<script>@ tag.
+* Most common offender - JSONP for cross-domain scripting
+
+:code code/zoobar/zoobars.js.php[js_leak lang=php]
+
+h1. Leaking Data via Ajax: Exploit
+
+# Set up data interceptor (JavaScript function or DOM object)
+# Use @<script>@ tag to obtain the data.
+# Use the data.
+
+:code code/zoobar_attacks/leak_xss.html[leak_html lang=html]
+
+:code code/zoobar_attacks/leak_xss.html[leak_js lang=html]
+
+h1. eval() is Evil
+
+:code code/zoobar/users.php[profile_escape lang=php]
+
+:code code/zoobar/users.php[profile_fail lang=php]
+
+h1. eval() is Evil
+
+:code code/zoobar_attacks/profile_worm.html[lang=html]
+
+h1. eval() Is Evil: Fix
+
+Use @eval()@ very very sparingly. 
+
+* @eval()@ should not be a shortcut for parsing code.
+* Numbers: @parseInt()@, @parseFloat()@
+* JSON: @JSON.
+
+:code code/zoobar_fixed/users.php[profile_parse lang=php]
+
+h1. Infrastructure: Plug-ins
 
 Famous 2009 Vulnerabilities
 
@@ -38,3 +226,15 @@ Fixes
 
 * Restrict types of files users can upload to your site
 * Don't require plug-ins, as much as possible
+
+h1. Infrastructure: Server Stack
+
+Update all stack components that you own ASAP.
+
+* At a minimum, you're responsible for upgrading your application framework
+* Good automated tests make platform updates quick and reliable. Best thing to have for 0-day vulnerabilities.
+
+Maintaining your own server?
+
+* Memorize the system's update command (e.g. @sudo apt-get update; sudo apt-get dist-upgrade@)
+* Consider using "Ksplice":http://www.ksplice.com/ for rebootless kernel updates

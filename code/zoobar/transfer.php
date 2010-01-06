@@ -39,6 +39,7 @@
 ?>
 <p><b>Balance:</b>
 <span id="myZoobars"></span> zoobars</p>
+<!-- START:transfer_form -->
 <form method=POST name=transferform
   action="<?php echo $_SERVER['PHP_SELF']?>">
 <p>Send <input name=zoobars type=text value="<?php 
@@ -49,6 +50,7 @@
 ?>" size=10></p>
 <input type=submit name=submission value="Send">
 </form>
+<!-- END:transfer_form -->
 <span class=warning><?php 
   echo $result; 
 ?></span>
