@@ -1,4 +1,23 @@
+h1. Integration Vulnerabilities
+
+* Web applications use a big soup of technology
+* Each integration point is a source of vulnerabilities
+
+Solution
+
+* Learn about security implications when integrating a new technology 
+
 h1. SQL Injection
+
+h1. SQL Injection: Featured on XKCD
+
+!{width: 100%}images/xkcd_327.png}!
+
+* Featured in Web comics, therefore very embarrassing
+
+h1. Exposed Source Code I: Password Database
+
+
 
 h1. CSRF: Cross-Site Request Forgery
 
@@ -8,3 +27,14 @@ h1. XSS by JSONP
 
 h1. XSS by @eval@
 
+h1. Plug-ins
+
+Famous 2009 Vulnerabilities
+
+* Windows Update compromises Firefox users by force-installing buggy .net plug-in
+* Adobe Flash vulnerability used to install trojans via drive-by PDF downloads
+
+Fixes
+
+* Restrict types of files users can upload to your site
+* Don't require plug-ins, as much as possible

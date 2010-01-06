@@ -4,54 +4,26 @@ h1. Your Instructors
 
 * Victor Costan
 
-h1. Why are you here today?
+h1. You need to care
 
-# Build a great Web application
-# Impress the judges
-# Profit
+* Early adopters can break your site for fun
+* Trust can take years to build, but can be lost in a second
+* Negligence in data handling can have legal consequences
 
-h1. Great Web User Interfaces
+h1. Rules of the Game
 
-# Content
-# Presentation
-# Behavior
+# You will get pwned
+# Don't get pwned in an embarrassingly easy way
+# Don't get pwned in an embarrassingly cheap way
 
-h1. Great Web UI: Techniques
+h1. You Will Get Pwned
 
-# Content: *HTML*
-# Presentation: *CSS*
-# Behavior: *JavaScript*
+Limit the damage caused by pwnage.
 
-h1. Keep It -Simple- +Separated+
+* Keep logs in your application.
+* Keep _encrypted_ backups.
 
-* Accessibility (a11y)
-* Code & design reuse
-* Decouple coders from designers
-* Decrease latency
-* Decrease hosting costs
-
-h1. The Evolution of Web Documents
-
-|1997: | %{color: blue;}html% ||2000: | %{color: green;}css% ||2005: | %{color: red;}js%    |
-|      | %{color: green;}css% ||      | %{color: green;}css% ||      | %{color: red;}js%    |
-|      | %{color: red;}js%    ||      | %{color: green;}css% ||      | %{color: red;}js%    |
-|      | %{color: blue;}html% ||      | %{color: blue;}html% ||      | %{color: green;}css% |
-|      | %{color: green;}css% ||      | %{color: red;}js%    ||      | %{color: green;}css% |
-|      | %{color: red;}js%    ||      | %{color: blue;}html% ||      | %{color: green;}css% |
-|      | %{color: blue;}html% ||      | %{color: red;}js%    ||      | %{color: blue;}html% |
-|      | %{color: green;}css% ||      | %{color: blue;}html% ||      | %{color: blue;}html% |
-|      | %{color: red;}js%    ||      | %{color: red;}js%    ||      | %{color: blue;}html% |
-
-h1. The Browser Wars
-
-* Internet Explorer 6
-* Browsers and standards
-* Plug-ins: Flash, Silverlight
-* The mobile Web
-
-h1. Development Strategy
-
-# Develop with Firefox + Firebug
-# Test in Chrome
-# Test in Internet Explorer, perhaps via VirtualBox
-# Test in Safari
+Good backup providers.
+* While you're at MIT: AFS lockers
+* In real life: S3 is cheap for off-site backups
+ 

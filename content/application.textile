@@ -1,10 +1,157 @@
-h1. Cleartext Passwords
+h1. Application Vulnerabilities
 
-h1. Unsigned Cookies
+* Can be detected by examining your application's implementation in isolation.
+
+h1. Plaintext Passwords I
+
+:include code/passwords_1.html
+
+* Input Not Masked
+* Fix: always use @type="password"@ for passwords, SSNs, etc
+
+h1. Plaintext Passwords II
+
+:include code/passwords_2.html
+
+:code code/passwords_2.html[lang=html]
+
+h1. Plaintext Passwords II
+
+:include code/passwords_2.html
+
+:code code/passwords_2.html[lang=html]
+
+* Password will be shown in address bar
+* Fix: never use @GET@ in login forms
+
+h1. Plaintext Passwords III
+
+:include code/passwords_3.html
+
+:code code/passwords_3.html[lang=html]
+
+h1. Plaintext Passwords III
+
+:include code/passwords_3.html
+
+:code code/passwords_3.html[lang=html]
+
+* Mistyped password available in HTML source
+
+* Fix: _never_ echo a user's password - HTML, e-mail, SMS
+
+h1. Plaintext Passwords IV
+
+Plaintext passwords in database
+
+* A database leak compromises user accounts on other sites
+* Any disgruntled admin or developer can lead to a massive PR disaster
+
+Hashed but unsalted passwords
+* Almost equivalent to plaintext passwords
+* Rainbow tables: huge databases (think DVD-BD) with hashes for probable passwords
+
+h1. Plaintext Passwords IV Fix
+
+:code code/zoobar_fixed/svc-users.php[salting_create lang=php]
+
+:code code/zoobar_fixed/svc-users.php[salting_check lang=php]
+
+h1. Plaintext Passwords V
+
+* Some frameworks (e.g. Rails) have automatic logging.
+
+:inlinecode[lang=js]
+Processing SessionsController#create to json (for 96.39.52.46 at 2010-01-06 01:03:52) [POST]
+  Parameters: {"name"=>"365c1e0d07b783297355e30022ea901d1dff96333b34929eb3650632bea73304", "device"=>{"hardware_model"=>"iPod2,1", "unique_id"=>"8186676124d4e588024ea29426f29d8aabb00858", "app_provisioning"=>"H", "app_version"=>"1.9", "app_id"=>"us.costan.StockPlay", "user_id"=>"0", "os_name"=>"iPhone OS", "os_version"=>"3.0", "model_id"=>"0", "app_push_token"=>"316e42e781d7cfb6f3de7ff2bab48e654c2d81da53d263476f8c66ca3253fc91"}, "format"=>"json", "action"=>"create", "controller"=>"sessions", "app_sig"=>"8f724fbfaf34772032412c5b638df009314c88bc6e6f245796cceb9c6db499f3", "password"=>"[FILTERED]"}
+Completed in 45ms (View: 1, DB: 28) | 200 OK [http://istockplay.com/sessions.json]
+:endinlinecode
+
+* The password is @[FILTERTED]@. Are you flitering your logs?
 
 h1. No Access Control
 
-h1. Trusting the Address Bar
+Painfully obvious URLs.
 
-h1. Trusting User Input
+* Saw @/show_message.php?id=5@, let's try @/show_message.php?id=6@
+* Saw @/users/1@ and @/users/1/edit@, let's try @/users/1/delete@ (REST URLs)
+* Let's try @/admin.php@, @/info.php@, @/status.php@, @/root.php@
 
+"Secret" URLs.
+
+* Used for administrative pages, poor man's ACL.
+* Can (and will) be leaked during presentations
+
+h1. No Access Control: Fix
+
+Autentication
+
+* HTTP Basic is a quick way for protecting admin pages
+* Authentication: "OpenID":http://openid.net/ gives you users, minus the hassles of an account system
+
+Authorization
+
+* Use HTTP @GET@ _only_ for idempotent requests. @GET@ authorizes proxies to cache pages and leads to accidental refreshes.
+* For every HTTP request, think about who is authorized to see the response.
+
+h1. Trusting Hidden Fields
+
+:include code/hidden_input.html
+
+:code code/hidden_input.html[lang=html]
+
+* Field editing is trivial - "Firebug":https://addons.mozilla.org/en-US/firefox/addon/1843
+
+h1. Trusting Cookies
+
+:code code/zoobar/includes/auth.php[plain_cookie_set lang=php]
+
+:code code/zoobar/includes/auth.php[plain_cookie_check lang=php]
+
+* Cookie editing is trivial - "Firecookie":https://addons.mozilla.org/en-US/firefox/addon/6683 (Firebug plug-in)
+
+h1. Trusting Cookies: Fix I
+
+* Create a random token on user logon.
+* Store the token in the database and in a cookie.
+
+:code code/zoobar_fixed/svc-users.php[token_create lang=php]
+
+:code code/zoobar_fixed/includes/auth.php[token_set_cookie lang=php]
+
+h1. Trusting Cookies: Fix I
+
+* Check the cookie against the token in the database.
+* Bonus: old cookies cannot be used.
+
+:code code/zoobar_fixed/includes/auth.php[token_cookie lang=php]
+
+:code code/zoobar_fixed/svc-users.php[token_check lang=php]
+
+h1. Trusting Cookies: Fix II
+
+Use signed cookies.
+
+:inlinecode[lang=php]
+# Basic idea, not full implementation.
+set_cookie($cookie_name, md5($secret . $value) . $value, time() + 31104000);
+:endinlinecode
+
+* Scales better: don't need to hit the database to check cookies.
+* Harder to secure: everyone depends on one secret.
+* Include an expiration date in the signature.
+* Rails, Django implement signed cookies by default.
+
+h1. Logic Flaws
+
+What's wrong here?
+
+:code code/zoobar/transfer.php[flawed_logic lang=php]
+
+h1. Logic Flaws
+
+* The code accepts a negative ammount of zoobars. Donating becomes stealing!
+
+Fix:
+* Double-check the code where mistakes are expensive
+* Good examples: economies, reputation systems (ratings), voting
