@@ -1,4 +1,3 @@
-#!/usr/bin/php-cgi
 <?php
 require_once("login.php");
 require_once("includes/db.php");

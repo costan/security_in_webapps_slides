@@ -1,4 +1,3 @@
-#!/usr/bin/php-cgi
 <?php 
   require_once("includes/common.php"); 
   nav_start_outer("Home");

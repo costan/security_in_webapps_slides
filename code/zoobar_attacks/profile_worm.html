@@ -8,7 +8,6 @@ var formEncode = function(args) {
     if (output != '') { output += String.fromCharCode(38) }
     output += encodeURIComponent(name) + '=' + encodeURIComponent(args[name]); 
   }
-  console.log(output);
   return output;
 }
 

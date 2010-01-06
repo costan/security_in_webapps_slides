@@ -24,6 +24,7 @@ Limit the damage caused by pwnage.
 * Keep _encrypted_ backups.
 
 Good backup providers.
+
 * While you're at MIT: AFS lockers
 * In real life: S3 is cheap for off-site backups
  

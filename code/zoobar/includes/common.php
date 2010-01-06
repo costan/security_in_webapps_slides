@@ -31,4 +31,7 @@ if(!validate_user($user)) {
   exit();
 }
 
+// Silence warning.
+date_default_timezone_set('America/New_York'); 
+
 ?>
