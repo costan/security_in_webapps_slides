@@ -1,0 +1,15 @@
+h1. Wrap-Up
+
+h1. Contact Information
+
+Victor Costan
+
+* Web: "www.costan.us":http://www.costan.us
+* E-mail: victor@costan.us
+* Facebook: "overmind":http://www.facebook.com/overmind
+* Twitter: "victor_costan":http://twitter.com/victor_costan
+
+This Presentation
+
+* Source code: http://github.com/costan/html_css_js_slides/
+* Pull requests (patches) are welcome!

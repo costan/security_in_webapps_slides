@@ -1,0 +1,57 @@
+h1. Introduction
+
+h1. Your Instructors
+
+* Victor Costan
+
+h1. Why are you here today?
+
+# Build a great Web application
+# Impress the judges
+# Profit
+
+h1. Great Web User Interfaces
+
+# Content
+# Presentation
+# Behavior
+
+h1. Great Web UI: Techniques
+
+# Content: *HTML*
+# Presentation: *CSS*
+# Behavior: *JavaScript*
+
+h1. Keep It -Simple- +Separated+
+
+* Accessibility (a11y)
+* Code & design reuse
+* Decouple coders from designers
+* Decrease latency
+* Decrease hosting costs
+
+h1. The Evolution of Web Documents
+
+|1997: | %{color: blue;}html% ||2000: | %{color: green;}css% ||2005: | %{color: red;}js%    |
+|      | %{color: green;}css% ||      | %{color: green;}css% ||      | %{color: red;}js%    |
+|      | %{color: red;}js%    ||      | %{color: green;}css% ||      | %{color: red;}js%    |
+|      | %{color: blue;}html% ||      | %{color: blue;}html% ||      | %{color: green;}css% |
+|      | %{color: green;}css% ||      | %{color: red;}js%    ||      | %{color: green;}css% |
+|      | %{color: red;}js%    ||      | %{color: blue;}html% ||      | %{color: green;}css% |
+|      | %{color: blue;}html% ||      | %{color: red;}js%    ||      | %{color: blue;}html% |
+|      | %{color: green;}css% ||      | %{color: blue;}html% ||      | %{color: blue;}html% |
+|      | %{color: red;}js%    ||      | %{color: red;}js%    ||      | %{color: blue;}html% |
+
+h1. The Browser Wars
+
+* Internet Explorer 6
+* Browsers and standards
+* Plug-ins: Flash, Silverlight
+* The mobile Web
+
+h1. Development Strategy
+
+# Develop with Firefox + Firebug
+# Test in Chrome
+# Test in Internet Explorer, perhaps via VirtualBox
+# Test in Safari
