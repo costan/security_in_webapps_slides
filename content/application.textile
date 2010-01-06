@@ -4,5 +4,7 @@ h1. Unsigned Cookies
 
 h1. No Access Control
 
-h1. Unchecked User Input
+h1. Trusting the Address Bar
+
+h1. Trusting User Input
 
