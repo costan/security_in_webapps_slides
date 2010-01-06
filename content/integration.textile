@@ -211,9 +211,11 @@ Use @eval()@ very very sparingly.
 
 * @eval()@ should not be a shortcut for parsing code.
 * Numbers: @parseInt()@, @parseFloat()@
-* JSON: @JSON.
+* JSON: @JSON.parse()@
 
 :code code/zoobar_fixed/users.php[profile_parse lang=php]
+
+This is for real: the previous attack was inspired from MySpace 2005 profile worm.
 
 h1. Infrastructure: Plug-ins
 
