@@ -1,8 +1,6 @@
-h1. HTML, CSS and JavaScript Slides
+h1. Security in Web Applications Slides
 
-This is the source code for a slide deck used in a 4-hour course on HTML, CSS, and JavaScript.
-
-The deck only renders correctly in Google Chrome (and possibly Safari). Firefox will work once it supports SVG images in the @<img>@ tag.
+This is the source code for a slide deck used in a 30-minute presentation on security considerations in Web applications.
 
 h2. Build Instructions
 
