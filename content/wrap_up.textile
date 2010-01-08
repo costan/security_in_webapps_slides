@@ -9,7 +9,14 @@ Victor Costan
 * Facebook: "overmind":http://www.facebook.com/overmind
 * Twitter: "victor_costan":http://twitter.com/victor_costan
 
-This Presentation
+h1. Presentation Resources
+
+Slides and Code
 
 * Source code: http://github.com/costan/security_in_web_apps_slides/
 * Pull requests (patches) are welcome!
+
+Demo
+
+* Attacks: in @code/zoobar_attacks@
+* Website: serve @code/zoobar@ at @http://localhost/zoobar@
