@@ -18,5 +18,6 @@ Slides and Code
 
 Demo
 
+* Zoobar code courtesy of "MIT 6.893":http://pdos.csail.mit.edu/6.893/ and "Stanford CS155":http://crypto.stanford.edu/cs155/ and 
 * Attacks: in @code/zoobar_attacks@
 * Website: serve @code/zoobar@ at @http://localhost/zoobar@
