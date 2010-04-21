@@ -72,10 +72,11 @@ h1. Web Security: the Mashup Hole
 
 DOM elements can access data from any URL.
 
-| Tool       | Motivation                                           | Attack                                                |
-| @<img>@    | CDNs (Content Distribution Networks)                 | Issue arbitrary GET requests.                         |
-| @<script>@ | CDNs, Mash-ups (e.g. have a Google Map on your page) | Mash-up provider can add malicious code to your page. |
-| JSONP      | Get data from another source.                        | Get data without user's consent.                      |
+| Tool       | Motivation                              | Attack                                   |
+| @<img>@    | CDNs (Content Distribution Networks)    | Issue arbitrary GET requests.            |
+| @<form>@   | CDNs, Mash-ups (e.g. payment forms)     | Issue arbitrary requests.                |
+| @<script>@ | CDNs, Mash-ups (e.g. Google Map widget) | Mash-up provider injects arbitrary code. |
+| JSONP      | Data from another server.               | Data without user's consent.             |
 
 h1. CSRF: Cross-Site Request Forgery
 
