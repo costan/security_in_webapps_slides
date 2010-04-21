@@ -1,0 +1,23 @@
+HTTP/1.1 200 OK
+Date: Wed, 21 Apr 2010 10:26:09 GMT
+Server: Apache/2.2.14 (Ubuntu)
+X-Powered-By: PHP/5.3.2-1ubuntu4
+Cache-Control: private
+Set-Cookie: ZoobarLogin=boom; expires=Sat, 16-Apr-2011 10:26:09 GMT
+Vary: Accept-Encoding
+Content-Encoding: gzip
+Content-Length: 546
+Keep-Alive: timeout=15, max=100
+Connection: Keep-Alive
+Content-Type: text/html
+
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="zoobar.css">
+<title>Login - Zoobar Foundation</title>
+</head>
+<body>
+<!-- truncated -->
+</body>
+</html>

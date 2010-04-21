@@ -1,0 +1,69 @@
+h1. Web 101 For Developers
+
+1. HTTP
+2. Cookies
+3. Content
+4. Same-Origin Policy
+
+h1. HTTP Protocol
+
+HTTP 1.0
+
+1. Client opens TCP connection to server
+1. Client sends HTTP request
+1. Server sends HTTP response
+1. Server closes TCP connection
+1. Client closes TCP connection
+
+HTTP 1.1
+* Optimization: use the same TCP connection for subsequent requests-response pairs
+* Still stateless: response determined by last request
+
+h1. HTTP Protocol: Simple Request Example
+
+:code code/http_request.http
+
+h1. HTTP Protocol: Request
+
+# Verb (GET, POST, PUT, DELETE)
+# Address (part of the URL)
+# Request Headers
+# Data
+
+h1. HTTP Protocol: Complex Request Example
+
+:code code/http_request_2.http
+
+h1. HTTP Protocol: Response
+
+# Status code and text (200 OK, 404 Not Found, ...)
+# Response headers
+# Response data
+
+h1. HTTP Protocol: Response Example
+
+:code code/http_response.http
+
+h1. Cookies
+
+Concepts
+* Add state to HTTP, which is stateless
+* Each DNS domain gets a cookie jar
+* Cookie jar: key-value pairs, max size 4kb
+
+Protocol
+* HTTP response header sets cookies
+* Subsequent HTTP request headers include cookie jar 
+
+h1. Content
+
+* Web page = HTML file + references
+* References
+** Presentation (style): CSS
+** Multimedia: image, video, audio
+** Behavior (scripts): JavaScript
+** Behavior (plug-ins): Flash etc.
+
+h1. Content Example
+
+:code code/html_page.html[lang=html]
