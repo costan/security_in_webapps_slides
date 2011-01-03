@@ -4,10 +4,10 @@ h1. Contact Information
 
 Victor Costan
 
-* Web: "www.costan.us":http://www.costan.us
+* Facebook: "pwnall":http://www.facebook.com/pwnall
+* Twitter: "@pwnall":http://twitter.com/pwnall
 * E-mail: victor@costan.us
-* Facebook: "overmind":http://www.facebook.com/overmind
-* Twitter: "victor_costan":http://twitter.com/victor_costan
+* Blog: "blog.costan.us":http://blog.costan.us
 
 h1. Presentation Resources
 
