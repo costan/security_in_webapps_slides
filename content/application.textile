@@ -2,6 +2,8 @@ h1. Application Vulnerabilities
 
 Application vulnerabilities can be detected by examining your application's code, without any regard to the other pieces of software that it interacts with.
 
+*{font-size: 3em; }http://bit.ly/h5kVdb*
+
 h1. Plaintext Passwords I
 
 :include code/passwords_1.html
