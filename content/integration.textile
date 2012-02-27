@@ -68,6 +68,17 @@ Firewalls sites, so site A cannot interfere with site B
 * JavaScript from A cannot access the DOM of pages from site B
 * JavaScript from A cannot send an @XmlHttpRequest@ to B
 
+h1. Web Security: Same-Origin Policy v2
+
+Firewalls sites, so site A cannot interfere with site B
+
+* Site A does not receive cookies from site B
+* JavaScript from A cannot read site B's cookie jar
+* JavaScript from A cannot access the DOM of pages from site B
+* JavaScript from A cannot send an @XmlHttpRequest@ to B *unless*
+   ** it makes the request without a cookie jar *or*
+   ** B implements CORS (cross-origin resource sharing) and accepts A
+
 h1. Web Security: the Mashup Hole
 
 DOM elements can access data from any URL.

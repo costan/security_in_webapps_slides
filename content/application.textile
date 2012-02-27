@@ -135,8 +135,8 @@ h1. Trusting Cookies: Fix II
 Use signed cookies.
 
 :inlinecode[lang=php]
-# Basic idea, not full implementation.
-set_cookie($cookie_name, md5($secret . $value) . $value, time() + 31104000);
+# Basic idea.
+set_cookie($cookie_name, hash_hmac("sha256", $value, $secret) . $value, time() + 31104000);
 :endinlinecode
 
 * Scales better: no need to hit the database to check cookies.
