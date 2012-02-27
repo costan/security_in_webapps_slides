@@ -9,11 +9,11 @@ h1. HTTP Protocol
 
 HTTP 1.0
 
-1. Client opens TCP connection to server
-1. Client sends HTTP request
-1. Server sends HTTP response
-1. Server closes TCP connection
-1. Client closes TCP connection
+# Client opens TCP connection to server
+# Client sends HTTP request
+# Server sends HTTP response
+# Server closes TCP connection
+# Client closes TCP connection
 
 HTTP 1.1
 * Optimization: use the same TCP connection for subsequent requests-response pairs
