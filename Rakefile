@@ -1,10 +1,17 @@
-APP_ROOT = File.dirname(__FILE__) unless defined?(APP_ROOT)
+# encoding: utf-8
+
 require 'rubygems'
-if File.exist?("#{APP_ROOT}/vendor/codex")
-  $:.unshift "#{APP_ROOT}/vendor/codex/lib"
-else
-  gem 'codex'
+require 'bundler'
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
 end
+require 'rake'
+
+APP_ROOT = File.dirname(__FILE__) unless defined?(APP_ROOT)
 require 'codex/rake/codextask'
 Codex.root = APP_ROOT
 

@@ -6,7 +6,7 @@ h2. Build Instructions
 
 h3. Prerequisites
 
-You need Ruby, Rake and the <code>codex</code> Ruby gem to build this deck.
+You need Ruby, Rake, and Bundler. The other prerequisites are in the Gemfile.
 
 You need some PHP-enabled Web server to run the demo code in the slide.
 

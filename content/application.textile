@@ -125,7 +125,6 @@ h1. Trusting Cookies: Fix I
 h1. Trusting Cookies: Fix I
 
 * Check the cookie against the token in the database.
-* Bonus: old cookies cannot be used.
 
 :code code/zoobar_fixed/includes/auth.php[token_cookie lang=php]
 
