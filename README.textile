@@ -6,7 +6,12 @@ h2. Build Instructions
 
 h3. Prerequisites
 
-You need Ruby, Rake, and Bundler. The other prerequisites are in the Gemfile.
+You need Ruby and Bundler. The other prerequisites are in the Gemfile.
+
+<pre><code>sudo apt-get install -y ruby rubygems
+sudo gem install rake bundler
+bundle install
+</code></pre>
 
 You need some PHP-enabled Web server to run the demo code in the slide.
 
@@ -14,9 +19,7 @@ h3. Building the Deck
 
 Issue the following command in the presentation's root directory. The presentation's entry point is <code>html/all.html</code>.
 
-<pre><code>
-rake all
-</code></pre>
+<pre><code>bundle exec rake all</code></pre>
 
 h2. Contributions
 
