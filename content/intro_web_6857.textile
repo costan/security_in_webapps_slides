@@ -15,11 +15,7 @@ HTTP 1.0
 # Server closes TCP connection
 # Client closes TCP connection
 
-HTTP 1.1
-* Optimization: use the same TCP connection for subsequent requests-response pairs
-* Still stateless: response determined by last request
-
-h1. HTTP Protocol: Simple Request Example
+h1. HTTP Protocol: Request Example
 
 :code code/http_request.http
 
@@ -29,6 +25,16 @@ h1. HTTP Protocol: Request
 # Address (part of the URL)
 # Request Headers
 # Data
+
+h1. HTTP Protocol, revised
+
+HTTP 1.1
+
+* HTTP 1.0 + @Keep-Alive@
+* Re-use a TCP connection for future requests-response pairs
+  ** Avoids TCP handshake cost
+  ** No change in semantics
+* _Still stateless_
 
 h1. HTTP Protocol: Complex Request Example
 

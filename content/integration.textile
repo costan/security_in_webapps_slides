@@ -7,7 +7,7 @@ Integration vulnerabilities are not obvious from the application's logic. They h
 
 Solution
 
-* Learn about security implications when integrating a new technology 
+* Learn security implications of ALL technologies 
 
 h1. SQL Injection
 
